@@ -7,6 +7,10 @@
 
 <img align="right" width=175 src="buildroot/share/pixmaps/logo/marlin-250.png" />
 
+**This fork is set up for my own Delta FLSUN SR running with the following modifications - look to the original repo for details!**
+**- Orbiter v2.0 Direct Drive Extruder**
+**- MKS HX43 LCD (V1.31 Firmware)**
+
 Additional documentation can be found at the [Marlin Home Page](https://marlinfw.org/).
 Please test this firmware and let us know if it misbehaves in any way. Volunteers are standing by!
 

@@ -607,10 +607,10 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#if NONE(Q5, SR_MKS, SR_BTT, NANO1X) 
+#if NONE(Q5, SR_MKS, SR_BTT, NANO1X)
   #define E0_AUTO_FAN_PIN -1
 #elif ENABLED(SR_MKS)
-  #define E0_AUTO_FAN_PIN PB0  
+  #define E0_AUTO_FAN_PIN PB0
 #else
   #define E0_AUTO_FAN_PIN FAN1_PIN  //PB0 for SR_MKS(default) or wiring to PB1.
 #endif
@@ -625,7 +625,7 @@
 #define COOLER_AUTO_FAN_PIN -1
 #define COOLER_FAN_PIN -1
 
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 80
+#define EXTRUDER_AUTO_FAN_TEMPERATURE 60
 #define EXTRUDER_AUTO_FAN_SPEED 255   // 255 == full speed
 #define CHAMBER_AUTO_FAN_TEMPERATURE 30
 #define CHAMBER_AUTO_FAN_SPEED 255
@@ -853,7 +853,7 @@
                                               // For delta all values must be the same
 #define HOMING_BUMP_DIVISOR { 4, 4, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
-				 
+
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
 
 //#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
@@ -1763,7 +1763,11 @@
 // Additional options for DGUS / DWIN displays
 //
 #if HAS_DGUS_LCD
-  #define LCD_SERIAL_PORT 1
+  #if ENABLED(DGUS_LCD_UI_MKS)
+    #define LCD_SERIAL_PORT 3
+  #else
+    #define LCD_SERIAL_PORT 1
+  #endif
   #define LCD_BAUDRATE 115200
 
   #define DGUS_RX_BUFFER_SIZE 128
@@ -2314,7 +2318,7 @@
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
 //#define RX_BUFFER_SIZE 1024
 #if ANY(XP1, XP2)
-  #define RX_BUFFER_SIZE 64 
+  #define RX_BUFFER_SIZE 64
 #endif
 
 #if RX_BUFFER_SIZE >= 1024
@@ -2549,7 +2553,7 @@
   #elif ENABLED(NEMA14)
     #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     10
     #define FILAMENT_CHANGE_UNLOAD_ACCEL        25
-    #define FILAMENT_CHANGE_UNLOAD_LENGTH      100
+    #define FILAMENT_CHANGE_UNLOAD_LENGTH      110
   #elif ANY(SR_MKS, SR_BTT)
     #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     40
     #define FILAMENT_CHANGE_UNLOAD_ACCEL        25
@@ -2573,7 +2577,7 @@
   #elif ENABLED(NEMA14)
     #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE  10
     #define FILAMENT_CHANGE_FAST_LOAD_ACCEL     25
-    #define FILAMENT_CHANGE_FAST_LOAD_LENGTH    70
+    #define FILAMENT_CHANGE_FAST_LOAD_LENGTH   110
   #elif ANY(SR_MKS, SR_BTT)
     #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE  40
     #define FILAMENT_CHANGE_FAST_LOAD_ACCEL     25
@@ -2766,11 +2770,6 @@
    * Override for each driver with <driver>_INTERPOLATE settings below
    */
   #define INTERPOLATE      true
-
-  // test
-  //#define XYZ_CURRENT       900
-  //#define XYZ_CURRENT_HOME  800
-  //#define E_CURRENT         850
 
   #if AXIS_IS_TMC(X)
     #define X_CURRENT       XYZ_CURRENT        // (mA) RMS current. Multiply by 1.414 for peak current.
@@ -3949,7 +3948,7 @@
  */
 
 // Custom Menu: Main Menu
-//#define CUSTOM_MENU_MAIN  //Define on FLSUNQ_Config
+#define CUSTOM_MENU_MAIN  //Define on FLSUNQ_Config
 #if ENABLED(CUSTOM_MENU_MAIN)
   #define CUSTOM_MENU_MAIN_TITLE "Special Menu Delta & Leveling"
   //#define CUSTOM_MENU_MAIN_SCRIPT_DONE "M117 User Script Done"

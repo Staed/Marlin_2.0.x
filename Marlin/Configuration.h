@@ -113,7 +113,7 @@
     #define BAUD_RATE_GCODE
   #endif
   #ifdef Q5
-    #define MOTHERBOARD BOARD_MKS_ROBIN_NANO           // (Default) Q5 old MoBo 
+    #define MOTHERBOARD BOARD_MKS_ROBIN_NANO           // (Default) Q5 old MoBo
     //#define MOTHERBOARD BOARD_MKS_ROBIN_NANO_V1_3_F4 // Q5 new MoBo
     #define BAUD_RATE_GCODE
   #endif
@@ -173,10 +173,11 @@
     #elif ENABLED(MKS_WIFI)
       #define SERIAL_PORT_2 1 // 1=ESP3Dv2.1 MKS-Wifi
       #define SERIAL_PORT_3 3 // 3=BTT-TFT(0,1=nok)
-      #define BAUDRATE_3 250000//115200 
-    #else
+      #define BAUDRATE_3 250000//115200
+    #elif DISABLED(DGUS_LCD_UI_MKS)
       #define SERIAL_PORT_2 3 // 3=BTT-TFT(0,1=nok)
-      #define BAUDRATE_2 250000      
+      #define BAUDRATE_2 250000
+    #else
     #endif
   #endif
 #else
@@ -923,7 +924,7 @@
   #if ANY(SR_MKS, SR_BTT)
     #define DELTA_SEGMENTS_PER_SECOND 160
   #elif ENABLED(XP1)
-    #define DELTA_SEGMENTS_PER_SECOND 100  //200  
+    #define DELTA_SEGMENTS_PER_SECOND 100  //200
   #else
     #define DELTA_SEGMENTS_PER_SECOND  80  //200
   #endif
@@ -1220,7 +1221,7 @@
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
 #if ANY(XP1, SR_MKS, SR_BTT)
-  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 500, 210 }
+  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 500, 120 }
 #else
   #define DEFAULT_MAX_FEEDRATE          { 250, 250, 250, 210 }
 #endif
@@ -1237,7 +1238,7 @@
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
 #if ANY(SR_MKS, SR_BTT)
-  #define DEFAULT_MAX_ACCELERATION      { 6000, 6000, 6000, 3000 }
+  #define DEFAULT_MAX_ACCELERATION      { 6000, 6000, 6000, 10000 }
 #else
   #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 3000, 3000 }
 #endif
@@ -1536,7 +1537,7 @@
   #define PROBING_MARGIN 15
 #endif
 
-// X and Y axis travel speed (mm/min) between probes 
+// X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_FEEDRATE (66*60)    //3960
 
 #if ANY(N_PROBE, P_PROBE)
@@ -1634,7 +1635,7 @@
 
 // Before deploy/stow pause for user confirmation
 #if NONE(X_PROBE, P_PROBE, N_PROBE)
-  #define PAUSE_BEFORE_DEPLOY_STOW
+  //#define PAUSE_BEFORE_DEPLOY_STOW
 #endif
 #if ENABLED(PAUSE_BEFORE_DEPLOY_STOW)
   //#define PAUSE_PROBE_DEPLOY_WHEN_TRIGGERED // For Manual Deploy Allenkey Probe
@@ -1855,7 +1856,7 @@
     #define FIL_RUNOUT_PULLUP
   #endif
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-  
+
   #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
   //#define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
   //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
@@ -2009,7 +2010,7 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  //#define G26_MESH_VALIDATION
+  #define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for G26.
@@ -2030,7 +2031,7 @@
 
   // Set the number of grid points per dimension.
   // Works best with 5 or more points in each dimension.
-  #define GRID_MAX_POINTS_X 7
+  #define GRID_MAX_POINTS_X 9
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -2039,7 +2040,7 @@
 
     // Beyond the probed grid, continue the implied tilt?
     // Default is to maintain the height of the nearest edge.
-    //#define EXTRAPOLATE_BEYOND_GRID
+    #define EXTRAPOLATE_BEYOND_GRID
 
     //
     // Experimental Subdivision of the grid by Catmull-Rom method.
@@ -2302,7 +2303,7 @@
 // Preheat Constants - Up to 5 are supported without changes
 //
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_HOTEND 215
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED   200 // Value from 0 to 255
@@ -2551,7 +2552,7 @@
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-#define DISPLAY_CHARSET_HD44780 WESTERN
+#define DISPLAY_CHARSET_HD44780 JAPANESE
 
 /**
  * Info Screen Style (0:Classic, 1:Průša)
