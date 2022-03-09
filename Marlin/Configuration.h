@@ -1238,7 +1238,7 @@
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
 #if ANY(SR_MKS, SR_BTT)
-  #define DEFAULT_MAX_ACCELERATION      { 6000, 6000, 6000, 10000 }
+  #define DEFAULT_MAX_ACCELERATION      { 6000, 6000, 6000, 5000 }
 #else
   #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 3000, 3000 }
 #endif

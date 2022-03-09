@@ -411,7 +411,7 @@
   #ifndef Q5
     #define Y_OFFSET        0
     //#define Z_OFFSET       -16.2
-    #define Z_OFFSET        -18.1
+    #define Z_OFFSET        -18
   #else
     #define Y_OFFSET        0
     #define Z_OFFSET       -18
