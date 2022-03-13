@@ -386,7 +386,7 @@
 //eSteps
 #ifndef EXTRUDER_STEPS
   #ifdef NEMA14
-    #define EXTRUDER_STEPS 690  // Extruder SuperHX, Mini-Sherpa, Orbiter, LGX_Lite
+    #define EXTRUDER_STEPS 765  // Extruder SuperHX, Mini-Sherpa, Orbiter, LGX_Lite
   #elif ANY(BMG, SR_MKS, SR_BTT)
     #define EXTRUDER_STEPS 417  // Extruder BMG(Left/Right)
   #elif ENABLED(OMG)
@@ -426,7 +426,7 @@
 #endif
 #ifndef E_CURRENT
   #ifdef NEMA14
-    #define E_CURRENT       850//380
+    #define E_CURRENT       680//380
   #else
     #define E_CURRENT       850
   #endif
